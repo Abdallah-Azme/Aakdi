@@ -1,6 +1,5 @@
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './globals.css';
-import '@/src/style/main.css';
 import { Toaster } from 'sonner';
 export async function generateMetadata() {
   return {

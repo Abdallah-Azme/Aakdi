@@ -89,16 +89,16 @@ export default function StaffAnalysisWrapper({ id }) {
     ]
 
     return (
-        <div className="financial-analysis-container">
+        <div className="flex flex-col gap-6 p-6 min-h-screen" dir="rtl">
             <Header page='welcome' title={title} isMain={false} first="الرئيــسية" firstURL="/" second='التحليــلات' secondURL="/home/analysis" third={title} thirdURL={`/home/financial-analysis/${id}`} />
-            <div className="staff-analysis-container">
-                <div className="staff-grid">
+            
+            <div className="mt-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {staffData.map((staff) => (
                         <StaffCard key={staff.id} staff={staff} />
                     ))}
                 </div>
             </div>
-
         </div>
-    )
+    );
 }

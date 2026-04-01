@@ -49,34 +49,37 @@ export default function ExpenseAnalysisWrapper({ id }) {
         ;
 
     return (
-        <div className="financial-analysis-container">
+        <div className="flex flex-col gap-6 p-6 min-h-screen" dir="rtl">
             <Header page='welcome' title={title} isMain={false} first="الرئيــسية" firstURL="/" second='التحليــلات' secondURL="/home/analysis" third={title} thirdURL={`/home/return-analysis/${id}`} />
-            <div className="financial-table-cont">
-                <table className="financial-table">
-                    <thead>
+            
+            <div className="w-full overflow-x-auto bg-white rounded-[24px] border border-[#E4E4E4] mt-4 shadow-sm">
+                <table className="w-full border-collapse">
+                    <thead className="bg-[#FAFAFA]">
                         <tr>
                             {tableHeaders.map((header, index) => (
-                                <th key={index}>{header}</th>
+                                <th key={index} className="text-right p-[15px_20px] text-[#A3A3A3] text-[13px] font-medium border-b border-[#E4E4E4] whitespace-nowrap">
+                                    {header}
+                                </th>
                             ))}
                         </tr>
                     </thead>
                     <tbody>
                         {Array.from({ length: 10 }).map((_, index) => (
-                            <tr key={index}>
-                                <td>
-                                    <div className="date-cell">
+                            <tr key={index} className="border-b border-[#F5F5F5] last:border-0 hover:bg-[#fafafa] transition-all">
+                                <td className="p-[15px_20px]">
+                                    <div className="text-black text-[13px] font-medium whitespace-nowrap">
                                         <span>{row.date}</span>
                                     </div>
                                 </td>
-                                <td>
-                                    <div className="payment-cell">
+                                <td className="p-[15px_20px]">
+                                    <div className="flex items-center gap-1.5 text-[#007C13] font-bold text-[14px]">
                                         <span>{row.price}</span>
                                         <Image src={greenRial} alt="rial" width={16} height={16} />
-                                        ✅
+                                        <i className="fa-solid fa-circle-check text-[12px]"></i>
                                     </div>
                                 </td>
-                                <td>
-                                    <div className="note-cell">
+                                <td className="p-[15px_20px]">
+                                    <div className="max-w-[600px] text-[13px] text-[#616161] leading-relaxed text-right line-clamp-2 hover:line-clamp-none transition-all cursor-default">
                                         <span>{row.note}</span>
                                     </div>
                                 </td>
@@ -85,14 +88,19 @@ export default function ExpenseAnalysisWrapper({ id }) {
                     </tbody>
                 </table>
             </div>
-            <div className="pagination">
-                <button className="pagination-btn"><i className="fa-solid fa-chevron-right"></i></button>
-                <button className="pagination-btn active">1</button>
-                <button className="pagination-btn">2</button>
-                <button className="pagination-btn">...</button>
-                <button className="pagination-btn">40</button>
-                <button className="pagination-btn"><i className="fa-solid fa-chevron-left"></i></button>
+
+            <div className="flex items-center justify-center gap-2.5 mt-4">
+                <button className="w-9 h-9 rounded-full border border-[#E4E4E4] flex items-center justify-center text-[#A3A3A3] hover:bg-brand-main hover:text-white transition-all">
+                    <i className="fa-solid fa-chevron-right text-[12px]"></i>
+                </button>
+                <button className="w-9 h-9 rounded-full bg-brand-main text-white flex items-center justify-center text-[13px] font-medium shadow-lg shadow-brand-main/20">1</button>
+                <button className="w-9 h-9 rounded-full border border-[#E4E4E4] flex items-center justify-center text-[#A3A3A3] hover:bg-[#f5f5f5] transition-all text-[13px]">2</button>
+                <span className="text-[#A3A3A3]">...</span>
+                <button className="w-9 h-9 rounded-full border border-[#E4E4E4] flex items-center justify-center text-[#A3A3A3] hover:bg-[#f5f5f5] transition-all text-[13px]">40</button>
+                <button className="w-9 h-9 rounded-full border border-[#E4E4E4] flex items-center justify-center text-[#A3A3A3] hover:bg-brand-main hover:text-white transition-all">
+                    <i className="fa-solid fa-chevron-left text-[12px]"></i>
+                </button>
             </div>
         </div>
-    )
+    );
 }

@@ -13,42 +13,42 @@ import { useRouter } from 'next/navigation'
 export default function Header({ page, title, isMain, first, firstURL, second, third, thirdURL, secondURL }) {
     const router = useRouter();
     return (
-        <div className="header">
-            <div className="r-side">
+        <div className="flex items-center justify-between mb-7 max-w-[calc(100vw-305px)] max-[1200px]:max-w-[calc(100vw-60px)]">
+            <div className="flex items-center gap-2.5">
                 {
                     isMain ?
-                        <div className="main-icon">
-                            <Image src={mainPagesHeaderIcon} alt="Aakdi" />
+                        <div className="w-[52px] h-[52px] rounded-full bg-brand-hover transition-all duration-300 flex items-center justify-center hover:bg-brand-main hover:scale-105">
+                            <Image src={mainPagesHeaderIcon} alt="Aakdi" className="w-4 h-auto object-contain" />
                         </div> :
-                        <button className="header-icon" onClick={() => { router.back() }}>
+                        <button className="w-[52px] h-[52px] rounded-full bg-[#F3F3F3] transition-all duration-300 flex items-center justify-center hover:bg-[#eee] hover:scale-105" onClick={() => { router.back() }}>
                             <i className="fa-solid fa-arrow-right"></i>
                         </button>
                 }
-                <div className="page-info">
+                <div className="max-[992px]:hidden">
                     {
                         title ?
-                            <h2>{title}</h2>
+                            <h2 className="text-lg font-bold text-black mb-1.5">{title}</h2>
                             : null
                     }
-                    <div className="bread-crumb">
+                    <div className="flex items-center gap-2.5">
                         {
                             first ?
-                                <Link href={firstURL} className="page-name">{first}</Link>
+                                <Link href={firstURL} className="text-[14px] text-[#424242] transition-all hover:text-brand-main">{first}</Link>
                                 : null
                         }
                         {
                             second ?
                                 <>
-                                    <i className="fa-solid fa-chevron-left"></i>
-                                    <Link href={secondURL} className="page-name">{second}</Link>
+                                    <i className="fa-solid fa-chevron-left text-[14px] text-[#424242]"></i>
+                                    <Link href={secondURL} className="text-[14px] text-[#424242] transition-all hover:text-brand-main">{second}</Link>
                                 </>
                                 : null
                         }
                         {
                             third ?
                                 <>
-                                    <i className="fa-solid fa-chevron-left"></i>
-                                    <Link href={thirdURL} className="page-name">{third}</Link>
+                                    <i className="fa-solid fa-chevron-left text-[14px] text-[#424242]"></i>
+                                    <Link href={thirdURL} className="text-[14px] text-[#424242] transition-all hover:text-brand-main">{third}</Link>
                                 </>
                                 : null
                         }
@@ -56,19 +56,19 @@ export default function Header({ page, title, isMain, first, firstURL, second, t
 
                 </div>
             </div>
-            <div className="l-side">
-                <Link href='/messages' className="header-icon"><Image src={messegeIcon} alt="Aakdi" /></Link>
-                <Link href='/notification' className="header-icon"><Image src={notificationIcon} alt="Aakdi" /></Link>
-                <div className="user-cont">
-                    <Image src={defaultUser} alt="Aakdi" />
-                    <div className="user-data">
-                        <h3>محمد علي</h3>
-                        <span>موظف</span>
+            <div className="flex items-center gap-2.5">
+                <Link href='/messages' className="w-[52px] h-[52px] rounded-full bg-[#F3F3F3] transition-all duration-300 flex items-center justify-center hover:bg-[#eee] hover:scale-105"><Image src={messegeIcon} alt="Aakdi" className="w-[20px] h-auto object-contain" /></Link>
+                <Link href='/notification' className="w-[52px] h-[52px] rounded-full bg-[#F3F3F3] transition-all duration-300 flex items-center justify-center hover:bg-[#eee] hover:scale-105"><Image src={notificationIcon} alt="Aakdi" className="w-[20px] h-auto object-contain" /></Link>
+                <div className="h-[52px] bg-[#F3F3F3] rounded-[26px] flex items-center gap-2.5 p-[6px_10px] transition-all duration-300 hover:bg-[#eee] hover:scale-105 max-[992px]:w-[52px] max-[992px]:p-0 justify-center">
+                    <Image src={defaultUser} alt="Aakdi" className="w-[39px] h-[39px] object-cover rounded-full overflow-hidden max-[992px]:w-full max-[992px]:h-full" />
+                    <div className="max-[992px]:hidden">
+                        <h3 className="text-[12px] font-medium text-black">محمد علي</h3>
+                        <span className="text-[10px] font-normal text-[#4D4D4D]">موظف</span>
                     </div>
                 </div>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="outline" className="header-icon header-drop-button">
+                        <Button variant="outline" className="w-[52px] h-[52px] rounded-full !bg-black !text-white border-none shadow-none hover:!bg-[#424242] transition-all duration-300 flex items-center justify-center hover:scale-105">
                             <i className="fa-solid fa-chevron-down"></i>
                         </Button>
                     </DropdownMenuTrigger>

@@ -4,9 +4,9 @@ import React from 'react'
 export default function Profile({ children }) {
 
     return (
-            <div className="home-wrapper">
+            <div className="flex relative">
                 <SideData />
-                <div className="content-wrapper">
+                <div className="w-full p-[45px] h-screen overflow-y-auto transition-all max-[1700px]:p-[30px]">
                     {children}
                 </div>
             </div>

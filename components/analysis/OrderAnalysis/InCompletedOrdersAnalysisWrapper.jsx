@@ -185,95 +185,92 @@ export default function OrdersAnalysisWrapper({ id }) {
 
     const getDocumentTypeClass = (type) => {
         const typeMap = {
-            'صك إلكــتروني': 'electronic-deed',
-            'عقد إيجار': 'rental-contract',
-            'صك ورقي': 'paper-deed',
-            'وثيقة عقارية': 'property-document',
-            'طلب واستلام تعديل': 'modification-request',
-            'تم تأكيد العقار': 'property-confirmed',
-            'الاستلام': 'delivery',
-            'تم تأكيد الطلب': 'order-confirmed',
-            'طلب واستلام تعديل': 'modification-delivery',
-            'عقد إيجار من العميل': 'client-rental',
-            'محتوى دفع من العميل': 'client-payment'
+            'صك إلكــتروني': 'bg-[#E6F7FF] text-[#0EA5E9]',
+            'عقد إيجار': 'bg-[#FFF4E6] text-[#F59E0B]',
+            'صك ورقي': 'bg-[#FFE6E6] text-[#EF4444]',
+            'وثيقة عقارية': 'bg-[#E6FFE6] text-[#10B981]',
+            'طلب واستلام تعديل': 'bg-[#FFF0E6] text-[#F97316]',
+            'تم تأكيد العقار': 'bg-[#FFF0E6] text-[#F97316]',
+            'الاستلام': 'bg-[#E6F2FF] text-[#3B82F6]',
+            'تم تأكيد الطلب': 'bg-[#E6F2FF] text-[#3B82F6]',
+            'عقد إيجار من العميل': 'bg-[#FFE6F5] text-[#EC4899]',
+            'محتوى دفع من العميل': 'bg-[#FFE6F5] text-[#EC4899]'
         };
-        return typeMap[type] || 'default';
+        return typeMap[type] || 'bg-[#F5F5F5] text-[#A3A3A3]';
     };
 
     const getStatusClass = (status) => {
         const statusMap = {
-            'قيد المعـالجة ..': 'processing',
-            'صك إلكــتروني': 'electronic',
-            'وثيقة': 'document',
-            'تجــاري': 'commercial',
-            'صك ورقي': 'paper',
-            'وثيقة عقارية': 'property',
-            'تم تأكيد العقار': 'confirmed',
-            'جديد استلام': 'new-receive',
-            'حجز استلام': 'reserve-receive',
-            'عقد إيجار من العميل': 'client-contract',
-            'واثيقة عقارية غير القياسية': 'non-standard',
-            'لم يتم التحديــد': 'default'
+            'قيد المعـالجة ..': 'bg-[#E6F7FF] text-[#0EA5E9]',
+            'تم تأكيد العقار': 'bg-[#E6FFE6] text-[#10B981]',
+            'جديد استلام': 'bg-[#FFE6F5] text-[#EC4899]',
+            'حجز استلام': 'bg-[#FFF4E6] text-[#F59E0B]',
+            'عقد إيجار من العميل': 'bg-[#F3E6FF] text-[#A855F7]',
+            'واثيقة عقارية غير القياسية': 'bg-[#FEF3E6] text-[#F59E0B]',
+            'لم يتم التحديــد': 'bg-[#F5F5F5] text-[#A3A3A3]'
         };
-        return statusMap[status] || 'default';
+        return statusMap[status] || 'bg-[#F5F5F5] text-[#A3A3A3]';
     };
+
     return (
-        <div className="financial-analysis-container">
+        <div className="flex flex-col gap-6 p-6 min-h-screen" dir="rtl">
             <Header page='welcome' title={title} isMain={false} first="الرئيــسية" firstURL="/" second='التحليــلات' secondURL="/home/analysis" third={title} thirdURL={`/home/financial-analysis/${id}`} />
 
-            <div className="financial-table-cont">
-                <table className="financial-table">
-                    <thead>
+            <div className="w-full overflow-x-auto bg-white rounded-[24px] border border-[#E4E4E4] mt-4">
+                <table className="w-full border-collapse">
+                    <thead className="bg-[#FAFAFA]">
                         <tr>
                             {tableHeaders.map((header, index) => (
-                                <th key={index}>{header}</th>
+                                <th key={index} className="text-right p-[15px_20px] text-[#A3A3A3] text-[13px] font-medium border-b border-[#E4E4E4] whitespace-nowrap">
+                                    {header}
+                                </th>
                             ))}
                         </tr>
                     </thead>
                     <tbody>
                         {tableData.map((row) => (
-                            <tr key={row.id}>
-                                <td>
-                                    <div className="order-number-cell">
-                                        <span>{row.orderNumber}</span>
-                                        <button onClick={() => navigator.clipboard.writeText(row.orderNumber)}><i className="fa-regular fa-copy"></i></button>
+                            <tr key={row.id} className="border-b border-[#F5F5F5] last:border-0 hover:bg-[#fafafa] transition-all">
+                                <td className="p-[15px_20px]">
+                                    <div className="flex items-center justify-center gap-2 px-3 py-1.5 bg-[#f9f9f9] rounded-lg w-fit mx-auto border border-[#eee]">
+                                        <span className="text-black text-[12px] font-bold">{row.orderNumber}</span>
+                                        <button onClick={() => navigator.clipboard.writeText(row.orderNumber)} className="text-[#A3A3A3] hover:text-brand-main">
+                                            <i className="fa-regular fa-copy text-[11px]"></i>
+                                        </button>
                                     </div>
                                 </td>
-                                <td>
-                                    <div className="phone-cell">
-                                        <span>{row.phone}</span>
-                                        <Link href={`https://wa.me/${row.phone}`} target="_blank">
+                                <td className="p-[15px_20px]">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-black text-[13px]">{row.phone}</span>
+                                        <Link href={`https://wa.me/${row.phone}`} target="_blank" className="hover:scale-110 transition-all">
                                             <Image src={waIcon} alt="wa" width={16} height={16} />
                                         </Link>
                                     </div>
                                 </td>
-                                <td>
-                                    <button className={`status-badge ${row.contractType === 'سكنـي' ? 'residential' : row.contractType === 'تجــاري' ? 'commercial' : 'other'}`}>
+                                <td className="p-[15px_20px]">
+                                    <span className={`px-3 py-1 rounded-full text-[11px] font-bold whitespace-nowrap ${row.contractType === 'سكنـي' ? 'bg-[#F0E6FF] text-[#7C3AED]' : 'bg-[#FFE6F0] text-[#EC4899]'}`}>
                                         {row.contractType}
-                                    </button>
+                                    </span>
                                 </td>
-                                <td>
-                                    <button className={`status-badge ${getDocumentTypeClass(row.documentType)}`}>
+                                <td className="p-[15px_20px]">
+                                    <span className={`px-3 py-1 rounded-full text-[11px] font-bold whitespace-nowrap ${getDocumentTypeClass(row.documentType)}`}>
                                         {row.documentType}
-                                    </button>
+                                    </span>
                                 </td>
-                                <td>
-                                    <div className="payment-cell">
+                                <td className="p-[15px_20px]">
+                                    <div className="text-[13px] text-[#E24444] font-bold">
                                         {row.payment}
                                     </div>
                                 </td>
-                                <td>{row.reciveDate}</td>
-                                <td>
-                                    <button className={`status-badge ${getStatusClass(row.status)}`}>
+                                <td className="p-[15px_20px] text-[#616161] text-[13px]">{row.reciveDate}</td>
+                                <td className="p-[15px_20px]">
+                                    <span className={`px-3 py-1 rounded-full text-[11px] font-bold whitespace-nowrap ${getStatusClass(row.status)}`}>
                                         {row.status}
-                                    </button>
+                                    </span>
                                 </td>
-                                <td>
-                                    <span>{row.reciver}</span>
-                                </td>
-                                <td>
-                                    <button className="actions-btn">
-                                        <i className="fa-solid fa-ellipsis-vertical"></i>
+                                <td className="p-[15px_20px] text-black text-[13px] font-medium">{row.reciver}</td>
+                                <td className="p-[15px_20px]">
+                                    <button className="w-8 h-8 rounded-full flex items-center justify-center text-[#4D4D4D] hover:bg-[#f5f5f5] transition-all">
+                                        <i className="fa-solid fa-ellipsis-vertical text-[14px]"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -282,17 +279,18 @@ export default function OrdersAnalysisWrapper({ id }) {
                 </table>
             </div>
 
-            <div className="pagination">
-                {/* cheveron */}
-                <button className="pagination-btn"><i className="fa-solid fa-chevron-right"></i></button>
-                <button className="pagination-btn active">1</button>
-
-
-                <button className="pagination-btn">2</button>
-                <button className="pagination-btn">...</button>
-                <button className="pagination-btn">40</button>
-                <button className="pagination-btn"><i className="fa-solid fa-chevron-left"></i></button>
+            <div className="flex items-center justify-center gap-2.5 mt-4">
+                <button className="w-9 h-9 rounded-full border border-[#E4E4E4] flex items-center justify-center text-[#A3A3A3] hover:bg-brand-main hover:text-white transition-all">
+                    <i className="fa-solid fa-chevron-right text-[12px]"></i>
+                </button>
+                <button className="w-9 h-9 rounded-full bg-brand-main text-white flex items-center justify-center text-[13px] font-medium shadow-lg shadow-brand-main/20">1</button>
+                <button className="w-9 h-9 rounded-full border border-[#E4E4E4] flex items-center justify-center text-[#A3A3A3] hover:bg-[#f5f5f5] transition-all text-[13px]">2</button>
+                <span className="text-[#A3A3A3]">...</span>
+                <button className="w-9 h-9 rounded-full border border-[#E4E4E4] flex items-center justify-center text-[#A3A3A3] hover:bg-[#f5f5f5] transition-all text-[13px]">40</button>
+                <button className="w-9 h-9 rounded-full border border-[#E4E4E4] flex items-center justify-center text-[#A3A3A3] hover:bg-brand-main hover:text-white transition-all">
+                    <i className="fa-solid fa-chevron-left text-[12px]"></i>
+                </button>
             </div>
         </div>
-    )
+    );
 }

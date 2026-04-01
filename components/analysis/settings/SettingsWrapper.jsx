@@ -46,14 +46,15 @@ export default function SettingsWrapper() {
     };
 
     return (
-        <div className="w-full p-6" dir="rtl">
-            <Header />
+        <div className="flex flex-col gap-8 p-6 min-h-screen overflow-x-auto max-w-[calc(100vw-305px)] max-[1200px]:max-w-[calc(100vw-60px)]" dir="rtl">
+            <Header page='welcome' title={"الإعـدادات"} isMain={false} first="الرئيــسية" firstURL="/" second='الإعـدادات' secondURL="/home/settings" />
+            
             {/* Website and App Settings Section */}
-            <div className="mb-8">
-                <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-xl font-bold">إعدادات الموقـع والتطبيـق</h2>
-                    <button className="w-5 h-5 rounded-full bg-gray-300 flex items-center justify-center text-xs">
-                        -
+            <div className="flex flex-col gap-6">
+                <div className="flex items-center justify-between">
+                    <h2 className="text-[18px] font-bold text-black border-r-4 border-brand-main pr-3">إعدادات الموقـع والتطبيـق</h2>
+                    <button className="w-6 h-6 rounded-full bg-[#f5f5f5] flex items-center justify-center text-[#A3A3A3] hover:bg-[#eee] transition-all">
+                        <i className="fa-solid fa-minus text-[10px]"></i>
                     </button>
                 </div>
                 
@@ -61,20 +62,21 @@ export default function SettingsWrapper() {
                     {websiteAppSettings.map((setting) => (
                         <div 
                             key={setting.id}
-                            className="bg-gray-50 rounded-lg p-4 flex flex-col items-center gap-3"
+                            className="bg-white rounded-[20px] border border-[#E4E4E4] p-5 flex flex-col items-center gap-4 hover:shadow-md transition-all group"
                         >
                             <div className="flex items-center gap-2">
-                                <div className={`w-2 h-2 rounded-full ${setting.status ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                                <div className={`w-2.5 h-2.5 rounded-full shadow-sm ${setting.status ? 'bg-[#0c6055] animate-pulse' : 'bg-[#E24444]'}`}></div>
                             </div>
-                            <span className="text-sm text-center">{setting.label}</span>
-                            <div className="flex flex-col items-center gap-1">
-                                <span className={`text-sm font-semibold ${setting.status ? 'text-green-600' : 'text-red-600'}`}>
+                            <span className="text-[13px] text-[#212121] font-medium text-center">{setting.label}</span>
+                            <div className="flex flex-col items-center gap-3 w-full pt-2 border-t border-[#F5F5F5]">
+                                <span className={`text-[11px] font-bold px-2 py-0.5 rounded-full ${setting.status ? 'bg-[#E7F5FF] text-[#228BE6]' : 'bg-[#FFF5F5] text-[#E03131]'}`}>
                                     {setting.status ? 'مُفعّــل' : 'مُعطل'}
                                 </span>
                                 <Switch 
-                                dir="ltr"
+                                    dir="ltr"
                                     checked={setting.status}
                                     onCheckedChange={() => handleToggle(setting.id)}
+                                    className="data-[state=checked]:bg-brand-main"
                                 />
                             </div>
                         </div>
@@ -83,25 +85,27 @@ export default function SettingsWrapper() {
             </div>
 
             {/* System Settings Section */}
-            <div>
-                <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-xl font-bold">إعدادات النظام</h2>
-                    <button className="w-5 h-5 rounded-full bg-gray-300 flex items-center justify-center text-xs">
-                        -
+            <div className="flex flex-col gap-6">
+                <div className="flex items-center justify-between">
+                    <h2 className="text-[18px] font-bold text-black border-r-4 border-brand-main pr-3">إعدادات النظام</h2>
+                    <button className="w-6 h-6 rounded-full bg-[#f5f5f5] flex items-center justify-center text-[#A3A3A3] hover:bg-[#eee] transition-all">
+                        <i className="fa-solid fa-minus text-[10px]"></i>
                     </button>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pb-8">
                     {systemSettings.map((setting, index) => (
                         <div 
                             key={index}
-                            className="bg-gray-50 rounded-lg p-4 flex items-center justify-between gap-3 cursor-pointer hover:bg-gray-100 transition-colors"
+                            className="bg-white rounded-[16px] border border-[#E4E4E4] p-4 flex items-center justify-between gap-3 cursor-pointer hover:border-brand-main hover:bg-[#fafafa] transition-all group"
                         >
-                            <button className="w-6 h-6 rounded-full bg-gray-400 flex items-center justify-center text-white hover:bg-gray-500 transition-colors">
+                            <div className="w-8 h-8 rounded-full bg-[#f5f5f5] flex items-center justify-center text-[#A3A3A3] group-hover:bg-brand-main group-hover:text-white transition-all">
                                 <Info size={16} />
-                            </button>
-                            <span className="text-sm flex-1 text-center">{setting.label}</span>
-                            <div className="w-6"></div>
+                            </div>
+                            <span className="text-[13px] text-[#212121] font-medium flex-1 text-center">{setting.label}</span>
+                            <div className="w-8 flex justify-end opacity-0 group-hover:opacity-100 transition-all">
+                                <i className="fa-solid fa-chevron-left text-[10px] text-brand-main"></i>
+                            </div>
                         </div>
                     ))}
                 </div>

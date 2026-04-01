@@ -6,13 +6,15 @@ import bluelogo from '@/public/images/blue-logo.svg';
 import waving from '@/public/images/waving.svg';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Form, FormField, FormItem, FormControl, FormMessage, FormLabel, } from '@/components/ui/form';
+import { Form, FormField, FormItem, FormControl, FormMessage, FormLabel } from '@/components/ui/form';
 import Image from 'next/image';
 import { useState } from 'react';
 import 'react-phone-number-input/style.css';
 import Link from 'next/link';
+
 export default function LoginPage() {
   const [loading, setLoading] = useState(false);
+  
   const FormSchema = z.object({
     email: z.string().email().nonempty("Please enter a valid email address."),
     password: z.string().min(6, "Password must be at least 6 characters."),
@@ -20,78 +22,115 @@ export default function LoginPage() {
       message: "Please check the 'Remember me' box",
     }),
   });
+  
   const form = useForm({
     resolver: zodResolver(FormSchema),
-    // ✅ default values for ALL fields used
     defaultValues: {
       email: '',
       password: '',
       remember: false,
     },
-    // optional, but helps keep fields mounted state consistent
     shouldUnregister: false,
   });
+  
   const onSubmit = (formdata) => {
-    //send post request
     console.log(formdata);
-
   };
+
   return (
-    <div className="sign-section" >
-      <div className="sign-container">
-        <div className="upper-head">
-          <Link href="/" className="logo-ancor"> <figure className="logo-img"> <Image src={bluelogo} alt="logo" className="img-fluid" /> </figure> </Link>
-          <Image src={waving} alt="Aakdi" className="img-fluid" />
+    <div className="flex items-center justify-center min-h-screen bg-[#FAFAFA] relative overflow-hidden p-4" dir="rtl">
+      <div className="w-full max-w-[580px] bg-white rounded-[40px] border border-[#F0F0F0] shadow-2xl p-[50px_60px] relative z-10 max-[768px]:p-8 max-[480px]:p-6 max-[480px]:rounded-[24px]">
+        <div className="flex items-center gap-3 mb-10">
+          <Link href="/" className="transition-transform hover:scale-105">
+            <div className="w-[60px] h-[60px] rounded-[18px] bg-white border flex items-center justify-center shadow-sm">
+              <Image src={bluelogo} alt="logo" className="w-[45px] h-auto object-contain" />
+            </div>
+          </Link>
+          <Image src={waving} alt="Welcome" className="w-[40px] h-auto object-contain" />
         </div>
-        <h2 className="form-head">مرحبـــــاً بعودتـــك !.</h2>
-        <p className="form-pargh">لوحة تحكم الموظفيــن.</p>
+        
+        <h2 className="text-[32px] font-bold text-black mb-2 font-sans tracking-tight">مرحبـــــاً بعودتـــك !.</h2>
+        <p className="text-[15px] text-[#A3A3A3] mb-10 font-medium">لوحة تحكم الموظفيــن.</p>
+        
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6">
             <FormField name="email" control={form.control} render={({ field }) => (
               <FormItem>
-                <FormControl>
-                  <div className="form-cont">
-                    <div className="form-group">
-                      <FormLabel className="form-label">البريـــد الإلكتـــرونـــي <span>*</span></FormLabel>
-                      <Input type="text" className="form-input" placeholder='أدخل بريدك الإلكتروني هنــا ...' {...field} />
-                    </div>
-                  </div>
-                </FormControl>
-                <FormMessage />
+                <div className="flex flex-col gap-2.5">
+                  <FormLabel className="text-[14px] font-bold text-black flex items-center gap-1">
+                    البريـــد الإلكتـــرونـــي <span className="text-[#FF4444]">*</span>
+                  </FormLabel>
+                  <FormControl>
+                    <Input 
+                        type="email" 
+                        className="h-[54px] rounded-[16px] border-[#EEEEEE] bg-[#F9F9F9] px-5 focus-visible:ring-1 focus-visible:ring-brand-main focus-visible:border-brand-main text-[14px]" 
+                        placeholder="أدخل بريدك الإلكتروني هنــا ..." 
+                        {...field} 
+                    />
+                  </FormControl>
+                </div>
+                <FormMessage className="text-[#FF4444] text-[12px] mt-1" />
               </FormItem>
             )} />
+            
             <FormField name="password" control={form.control} render={({ field }) => (
               <FormItem>
-                <FormControl>
-                  <div className="form-cont">
-                    <div className="form-group">
-                      <FormLabel className="form-label">كلمة المرور <span>*</span></FormLabel>
-                      <Input type="password" className="form-input" placeholder='أدخل كلمة المرور هنــا ...'  {...field} />
-                    </div>
-                  </div>
-                </FormControl>
-                <FormMessage />
+                <div className="flex flex-col gap-2.5">
+                  <FormLabel className="text-[14px] font-bold text-black flex items-center gap-1">
+                    كلمة المرور <span className="text-[#FF4444]">*</span>
+                  </FormLabel>
+                  <FormControl>
+                    <Input 
+                        type="password" 
+                        className="h-[54px] rounded-[16px] border-[#EEEEEE] bg-[#F9F9F9] px-5 focus-visible:ring-1 focus-visible:ring-brand-main focus-visible:border-brand-main text-[14px]" 
+                        placeholder="أدخل كلمة المرور هنــا ..."  
+                        {...field} 
+                    />
+                  </FormControl>
+                </div>
+                <FormMessage className="text-[#FF4444] text-[12px] mt-1" />
               </FormItem>
             )} />
+            
             <FormField name="remember" control={form.control} render={({ field }) => (
               <FormItem>
-                <FormControl>
-                  <div className="check-group">
-                    <div className="check-width flex justify-between">
-                      <label className="check-label">
-                        <input type="checkbox" checked={field.value} onChange={field.onChange} />
-                        <span className="checkmark custom-checkmark"></span>
-                        <span className="check-text">تــذكرني</span>
-                      </label>
-                      <Link href={'/reset'}>هل نسيــت كلمة المــرور !</Link>
-                    </div>
-                  </div>
-                </FormControl>
-                <FormMessage />
+                <div className="flex items-center justify-between w-full mt-2">
+                  <FormControl>
+                    <label className="flex items-center gap-2 cursor-pointer group">
+                      <div className="relative flex items-center justify-center w-5 h-5">
+                          <input 
+                              type="checkbox" 
+                              className="peer appearance-none w-5 h-5 rounded-[6px] border-2 border-[#EEEEEE] bg-[#F9F9F9] checked:bg-brand-main checked:border-brand-main transition-all cursor-pointer"
+                              checked={field.value} 
+                              onChange={field.onChange} 
+                          />
+                          <i className="fa-solid fa-check absolute text-white text-[11px] opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none"></i>
+                      </div>
+                      <span className="text-[13px] font-medium text-[#616161] group-hover:text-black transition-colors">تــذكرني</span>
+                    </label>
+                  </FormControl>
+                  <Link href="/reset" className="text-[13px] font-medium text-brand-main hover:text-brand-hover transition-colors">
+                    هل نسيــت كلمة المــرور !
+                  </Link>
+                </div>
+                <FormMessage className="text-[#FF4444] text-[12px]" />
               </FormItem>
             )} />
-            <div className="form-btn-cont"> <Button type="submit" className="form-btn" disabled={loading}> <span>{loading ? "جار التحقق" : "تسجيـــل الدخــول"}</span><span className="arrow-icon"><i className="fa-solid fa-arrow-up"></i></span></Button> </div>
-
+            
+            <div className="mt-4">
+               <Button 
+                type="submit" 
+                className="w-full h-[58px] rounded-[20px] bg-black hover:bg-brand-main hover:shadow-lg hover:shadow-brand-main/20 text-white font-bold text-[16px] transition-all duration-300 flex items-center justify-center gap-3 group" 
+                disabled={loading}
+              > 
+                <span>{loading ? "جار التحقق ..." : "تسجيـــل الدخــول"}</span>
+                {!loading && (
+                    <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center transition-transform group-hover:-translate-y-1">
+                        <i className="fa-solid fa-arrow-up rotate-[-45deg] text-[14px]"></i>
+                    </span>
+                )}
+              </Button> 
+            </div>
           </form>
         </Form>
       </div>

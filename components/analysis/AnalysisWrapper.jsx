@@ -709,11 +709,10 @@ export default function Statistics() {
     return (
         <>
             <Header page='welcome' title={"التحليــلات"} isMain={false} first="الرئيــسية" firstURL="/" second='التحليــلات' secondURL="/home/analysis" />
-            <div className="analysis-cont" dir="rtl">
-                <div className="category-cont">
+            <div className="flex flex-col gap-6 min-h-screen p-6 overflow-x-auto max-w-[calc(100vw-305px)] max-[1200px]:max-w-[calc(100vw-60px)]" dir="rtl">
+                <div className="[&>h2]:text-[18px] [&>h2]:font-bold [&>h2]:text-black [&>h2]:mb-[18px]">
                     <h2>{analysisData.title}</h2>
-                    <main className="analysis-wrapper">
-
+                    <main className="grid grid-cols-5 gap-2.5 w-full mb-2.5">
                         {
                             analysisData.incomes?.map((item, index) => (
                                 <AnalsCard key={index} item={item} />
@@ -723,29 +722,29 @@ export default function Statistics() {
                 </div>
                 {
                     data.map((item, index) => (
-                        <div className="category-cont" key={index}>
+                        <div className="[&>h2]:text-[18px] [&>h2]:font-bold [&>h2]:text-black [&>h2]:mb-[18px]" key={index}>
                             <h2>{item.title}</h2>
-                            <main className="analysis-wrapper">
+                            <main className="grid grid-cols-5 gap-2.5 w-full mb-2.5">
                                 {item.incomes.map((card, index) => (
                                     <DayCard key={index} item={card} />
                                 ))}
                             </main>
-                            <main className="analysis-wrapper">
+                            <main className="grid grid-cols-5 gap-2.5 w-full mb-2.5">
                                 {item.orders.map((card, index) => (
                                     <DayCard key={index} item={card} />
                                 ))}
                             </main>
-                            <main className="analysis-wrapper">
+                            <main className="grid grid-cols-5 gap-2.5 w-full mb-2.5">
                                 {item.incompleteOrders.map((card, index) => (
                                     <DayCard key={index} item={card} />
                                 ))}
                             </main>
-                            <main className="analysis-wrapper">
+                            <main className="grid grid-cols-5 gap-2.5 w-full mb-2.5">
                                 {item.returns.map((card, index) => (
                                     <DayCard key={index} item={card} />
                                 ))}
                             </main>
-                            <main className="analysis-wrapper">
+                            <main className="grid grid-cols-5 gap-2.5 w-full mb-2.5">
                                 {item.expenses.map((card, index) => (
                                     <DayCard key={index} item={card} />
                                 ))}
@@ -755,19 +754,19 @@ export default function Statistics() {
                 }
                 {
                     UserData.map((item, index) => (
-                        <div className="category-cont" key={index}>
+                        <div className="[&>h2]:text-[18px] [&>h2]:font-bold [&>h2]:text-black [&>h2]:mb-[18px]" key={index}>
                             <h2>{item.title}</h2>
-                            <main className="analysis-wrapper">
+                            <main className="grid grid-cols-5 gap-2.5 w-full mb-2.5">
                                 {item.usersAnalysis.map((card, index) => (
                                     <UserCard key={index} item={card} />
                                 ))}
                             </main>
-                            <main className="analysis-wrapper">
+                            <main className="grid grid-cols-5 gap-2.5 w-full mb-2.5">
                                 {item.userAvtivity.map((card, index) => (
                                     <UserCard key={index} item={card} />
                                 ))}
                             </main>
-                            <main className="analysis-wrapper">
+                            <main className="grid grid-cols-5 gap-2.5 w-full mb-2.5">
                                 {item.userOrders.map((card, index) => (
                                     <UserCard key={index} item={card} />
                                 ))}
@@ -777,9 +776,9 @@ export default function Statistics() {
                 }
                 {
                     OrdersData.map((item, index) => (
-                        <div className="category-cont" key={index}>
+                        <div className="[&>h2]:text-[18px] [&>h2]:font-bold [&>h2]:text-black [&>h2]:mb-[18px]" key={index}>
                             <h2>{item.title}</h2>
-                            <main className="orders-wrapper">
+                            <main className="grid grid-cols-3 gap-2.5 w-full mb-2.5">
                                 {item.orders.map((card, index) => (
                                     <OrderCard key={index} item={card} />
                                 ))}
@@ -789,9 +788,9 @@ export default function Statistics() {
                 }
                 {
                     EmployeesData.map((item, index) => (
-                        <div className="category-cont" key={index}>
+                        <div className="[&>h2]:text-[18px] [&>h2]:font-bold [&>h2]:text-black [&>h2]:mb-[18px]" key={index}>
                             <h2>{item.title}</h2>
-                            <main className="orders-wrapper">
+                            <main className="grid grid-cols-3 gap-2.5 w-full mb-2.5">
                                 {item.employeesAnalysis.map((card, index) => (
                                     <EmployeeCard key={index} item={card} />
                                 ))}
@@ -801,9 +800,9 @@ export default function Statistics() {
                 }
                 {
                     UnitsData.map((item, index) => (
-                        <div className="category-cont" key={index}>
+                        <div className="[&>h2]:text-[18px] [&>h2]:font-bold [&>h2]:text-black [&>h2]:mb-[18px]" key={index}>
                             <h2>{item.title}</h2>
-                            <main className="analysis-wrapper">
+                            <main className="grid grid-cols-5 gap-2.5 w-full mb-2.5">
                                 {item.PropertiesAnalysis.map((card, index) => (
                                     <UnitsCard key={index} item={card} />
                                 ))}
@@ -813,9 +812,9 @@ export default function Statistics() {
                 }
                 {
                     LocationsData.map((item, index) => (
-                        <div className="category-cont" key={index}>
+                        <div className="[&>h2]:text-[18px] [&>h2]:font-bold [&>h2]:text-black [&>h2]:mb-[18px]" key={index}>
                             <h2>{item.title}</h2>
-                            <main className="locations-wrapper">
+                            <main className="grid grid-cols-4 gap-2.5 w-full mb-2.5">
                                 {item.locationsAnalysis.map((card, index) => (
                                     <LocationsCard key={index} item={card} />
                                 ))}
@@ -825,9 +824,9 @@ export default function Statistics() {
                 }
                 {
                     layeringData.map((item, index) => (
-                        <div className="category-cont" key={index}>
+                        <div className="[&>h2]:text-[18px] [&>h2]:font-bold [&>h2]:text-black [&>h2]:mb-[18px]" key={index}>
                             <h2>{item.title}</h2>
-                            <main className="layering-wrapper">
+                            <main className="grid grid-cols-6 gap-2.5 w-full mb-2.5">
                                 {item.layeringAnalysis.map((card, index) => (
                                     <LayeringCard key={index} item={card} />
                                 ))}

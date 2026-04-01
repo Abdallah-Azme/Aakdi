@@ -46,24 +46,24 @@ export default function HomeWelcomeWrapper() {
             <Header page='welcome' title={null} isMain={true}
             // first="الرئيــسية" firstURL="/" second='التحليــلات' secondURL="/home/analysis"
             />
-            <div className="home-cont">
+            <div className="[&>h1]:text-[24px] [&>h1]:font-bold [&>h1]:text-black [&>h1]:mb-[15px] [&>p]:text-[14px] [&>p]:text-[#363636] [&>p]:max-w-[567px] [&>p]:mb-[44px]">
                 <h1>الإتقــان طريــق الخلــود في الأثــر ...</h1>
                 <p>الإتقان ليس في كثرة العمل، بل في صدق النية وجودة الأداء. من يعمل بضمير يترك أثراً لا يُمحى، قال تعالى: ﴿لِيَبْلُوَكُمْ أَيُّكُمْ أَحْسَنُ عَمَلًا﴾ ‏. ‏العبرة، بمعيار الجودة ‏والإحسان، ﻻبالكثرة والقلة !</p>
-                <div className="home-user-card">
-                    <Image src={logo} alt="Aakdi" className='logo-img-abs' />
-                    <Image src={defaultUser} alt="Aakdi" className='user-img' />
-                    <h3>أحمد عيد الله</h3>
-                    <h4>مدير</h4>
-                    <div className="date-time">
-                        <h2>{time}</h2>
-                        <h5>{date}</h5>
+                <div className="w-full max-w-[575px] rounded-[40px] bg-[#FBFBFB] border border-black/10 p-[59px] relative mx-auto mb-[50px] flex flex-col items-center justify-center">
+                    <Image src={logo} alt="Aakdi" className="absolute top-10 inset-inline-end-10 w-9 h-auto object-contain" />
+                    <Image src={defaultUser} alt="Aakdi" className="w-[112px] h-[112px] object-cover rounded-full overflow-hidden mx-auto mb-[15px]" />
+                    <h3 className="text-[14px] font-bold text-black mb-[6px] text-center">أحمد عيد الله</h3>
+                    <h4 className="text-[14px] font-normal text-[#4D4D4D] mb-[35px] text-center">مدير</h4>
+                    <div className="flex flex-col items-center justify-items-center gap-[15px] mb-[35px]">
+                        <h2 className="text-[24px] font-semibold text-black mb-0">{time}</h2>
+                        <h5 className="text-[#363636] text-[14px] font-normal">{date}</h5>
                     </div>
-                    <div className="wav-nm">
-                        <Image src={waving} alt="Aakdi" className='waving' />
-                        <h6>مرحبـــــاً بعودتـــك, ريــان !.</h6>
-                        <span>مديــر</span>
+                    <div className="flex flex-col items-center justify-items-center gap-[25px] mb-[35px]">
+                        <Image src={waving} alt="Aakdi" className="w-[60px] h-auto object-contain" />
+                        <h6 className="text-[32px] font-semibold text-brand-hover mb-0">مرحبـــــاً بعودتـــك, ريــان !.</h6>
+                        <span className="text-[18px] font-normal text-[#363636]">مديــر</span>
                     </div>
-                    <button className="start-btn" onClick={() => { router.push('/home/analysis') }}>
+                    <button className="flex items-center gap-[10px] h-[58px] px-[18px] rounded-[29px] bg-brand-hover text-white text-[14px] font-semibold transition-all hover:bg-brand-main" onClick={() => { router.push('/home/analysis') }}>
                         <i className='fa-solid fa-arrow-left'></i>
                         <span>يلا بســم الله</span>
                     </button>
@@ -72,3 +72,4 @@ export default function HomeWelcomeWrapper() {
         </>
     )
 }
+

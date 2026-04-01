@@ -96,7 +96,7 @@ export default function Salaries() {
     ];
 
     return (
-        <div className="financial-analysis-container">
+        <div className="flex flex-col gap-6 p-6 min-h-screen" dir="rtl">
             <Header
                 page='welcome'
                 title={"رواتـــب الموظفيــــن"}
@@ -109,79 +109,93 @@ export default function Salaries() {
                 thirdURL="/home/salaries"
             />
 
-            <div className="financial-table-cont">
-                <div className="flex items-center justify-between mb-5">
-                    <Link href="/home/salaries/add" className="btn btn-primary">
-                        + إضافة موظف
+            <div className="flex flex-col gap-6 bg-white rounded-[24px] border border-[#E4E4E4] p-6 mt-4 shadow-sm relative z-10">
+                <div className="flex items-center justify-between pb-6 border-b border-[#F5F5F5]">
+                    <h2 className="text-[18px] font-black text-black">قائمة الموظفيـن</h2>
+                    <Link href="/home/salaries/add" className="flex items-center gap-2 px-5 py-2.5 bg-brand-main text-white rounded-full font-bold text-[14px] hover:bg-brand-main/90 transition-all shadow-lg shadow-brand-main/20">
+                        <span>+ إضافة موظف</span>
                     </Link>
                 </div>
 
-                <table className="financial-table" dir="rtl">
-                    <thead>
-                        <tr>
-                            <th>الموظفة الشخصية</th>
-                            <th>الإسم</th>
-                            <th>الراتب الرئيسي</th>
-                            <th>رقم الجوال</th>
-                            <th>البريد الإلكتروني</th>
-                            <th>الصـــلاحيات</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {employees.map((employee) => (
-                            <tr key={employee.id}>
-                                <td>
-                                    <div className="flex justify-center">
-                                        <div 
-                                            className="w-12 h-12 rounded-full flex items-center justify-center"
-                                            style={{ backgroundColor: employee.avatar.color }}
-                                        >
-                                            <i className={`fa-solid ${employee.avatar.icon} text-white text-lg`}></i>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span className="px-6 py-2 bg-black text-white rounded-full font-medium inline-block">
-                                        {employee.name}
-                                    </span>
-                                </td>
-                                <td>
-                                    <div className="amount-cell">
-                                        <span>{employee.salary}</span>
-                                        <Image src={greenRial} alt="rial" width={16} height={16} />
-                                    </div>
-                                </td>
-                                <td>{employee.phone}</td>
-                                <td>{employee.email}</td>
-                                <td>
-                                    <div className="flex items-center justify-center gap-2">
-                                        {employee.permissions.map((perm, index) => (
-                                            <div
-                                                key={index}
-                                                className="w-10 h-10 rounded-full flex items-center justify-center"
-                                                style={{ backgroundColor: perm.color }}
-                                            >
-                                                <i 
-                                                    className={`fa-solid ${perm.icon}`}
-                                                    style={{ color: perm.iconColor, fontSize: '14px' }}
-                                                ></i>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </td>
+                <div className="w-full overflow-x-auto">
+                    <table className="w-full border-collapse">
+                        <thead>
+                            <tr className="bg-[#FAFAFA]">
+                                <th className="text-center p-[15px_20px] text-[#A3A3A3] text-[13px] font-medium border-b border-[#E4E4E4] whitespace-nowrap rounded-r-[12px]">البروفايل</th>
+                                <th className="text-right p-[15px_20px] text-[#A3A3A3] text-[13px] font-medium border-b border-[#E4E4E4] whitespace-nowrap">الإسم</th>
+                                <th className="text-right p-[15px_20px] text-[#A3A3A3] text-[13px] font-medium border-b border-[#E4E4E4] whitespace-nowrap">الراتب الرئيسي</th>
+                                <th className="text-right p-[15px_20px] text-[#A3A3A3] text-[13px] font-medium border-b border-[#E4E4E4] whitespace-nowrap">رقم الجوال</th>
+                                <th className="text-right p-[15px_20px] text-[#A3A3A3] text-[13px] font-medium border-b border-[#E4E4E4] whitespace-nowrap">البريد الإلكتروني</th>
+                                <th className="text-center p-[15px_20px] text-[#A3A3A3] text-[13px] font-medium border-b border-[#E4E4E4] whitespace-nowrap rounded-l-[12px]">الصـــلاحيات</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody className="divide-y divide-[#F5F5F5]">
+                            {employees.map((employee) => (
+                                <tr key={employee.id} className="hover:bg-[#fafafa] transition-all">
+                                    <td className="p-[15px_20px]">
+                                        <div className="flex justify-center">
+                                            <div 
+                                                className="w-12 h-12 rounded-full flex items-center justify-center border-2 border-white shadow-md relative overflow-hidden"
+                                                style={{ backgroundColor: employee.avatar.color }}
+                                            >
+                                                <div className="absolute inset-0 bg-black/5"></div>
+                                                <i className={`fa-solid ${employee.avatar.icon} text-white text-lg relative z-10`}></i>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td className="p-[15px_20px]">
+                                        <div className="flex items-center gap-2">
+                                            <span className="px-4 py-1.5 bg-black text-white rounded-full font-bold text-[13px] shadow-sm">
+                                                {employee.name}
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td className="p-[15px_20px]">
+                                        <div className="flex items-center gap-1.5 text-[#007C13] font-bold text-[15px]">
+                                            <span>{employee.salary}</span>
+                                            <Image src={greenRial} alt="rial" width={16} height={16} />
+                                        </div>
+                                    </td>
+                                    <td className="p-[15px_20px]">
+                                        <span className="text-[14px] text-[#4D4D4D] font-medium" dir="ltr">{employee.phone}</span>
+                                    </td>
+                                    <td className="p-[15px_20px]">
+                                        <span className="text-[14px] text-[#737373]">{employee.email}</span>
+                                    </td>
+                                    <td className="p-[15px_20px]">
+                                        <div className="flex items-center justify-center gap-2">
+                                            {employee.permissions.map((perm, index) => (
+                                                <button
+                                                    key={index}
+                                                    className="w-9 h-9 rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-sm"
+                                                    style={{ backgroundColor: perm.color }}
+                                                >
+                                                    <i 
+                                                        className={`fa-solid ${perm.icon} text-[13px]`}
+                                                        style={{ color: perm.iconColor }}
+                                                    ></i>
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
 
-            <div className="pagination">
-                <button className="pagination-btn"><i className="fa-solid fa-chevron-right"></i></button>
-                <button className="pagination-btn active">1</button>
-                <button className="pagination-btn">2</button>
-                <button className="pagination-btn">...</button>
-                <button className="pagination-btn">40</button>
-                <button className="pagination-btn"><i className="fa-solid fa-chevron-left"></i></button>
+                <div className="flex items-center justify-center gap-2.5 mt-8 pt-6 border-t border-[#F5F5F5]">
+                    <button className="w-9 h-9 rounded-full border border-[#E4E4E4] flex items-center justify-center text-[#A3A3A3] hover:bg-brand-main hover:text-white transition-all">
+                        <i className="fa-solid fa-chevron-right text-[12px]"></i>
+                    </button>
+                    <button className="w-9 h-9 rounded-full bg-brand-main text-white flex items-center justify-center text-[13px] font-black shadow-lg shadow-brand-main/20">1</button>
+                    <button className="w-9 h-9 rounded-full border border-[#E4E4E4] flex items-center justify-center text-[#A3A3A3] hover:bg-[#f5f5f5] transition-all text-[13px] font-bold">2</button>
+                    <span className="text-[#A3A3A3] px-2 font-bold">...</span>
+                    <button className="w-9 h-9 rounded-full border border-[#E4E4E4] flex items-center justify-center text-[#A3A3A3] hover:bg-[#f5f5f5] transition-all text-[13px] font-bold">40</button>
+                    <button className="w-9 h-9 rounded-full border border-[#E4E4E4] flex items-center justify-center text-[#A3A3A3] hover:bg-brand-main hover:text-white transition-all">
+                        <i className="fa-solid fa-chevron-left text-[12px]"></i>
+                    </button>
+                </div>
             </div>
         </div>
     )

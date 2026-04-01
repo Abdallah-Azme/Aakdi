@@ -112,7 +112,7 @@ export default function TotalStaff() {
     ];
 
     return (
-        <div className="financial-analysis-container">
+        <div className="flex flex-col gap-6 p-6 min-h-screen" dir="rtl">
             <Header
                 page='welcome'
                 title={"عدد الموضفين"}
@@ -124,77 +124,59 @@ export default function TotalStaff() {
                 third="عدد الموضفين"
                 thirdURL={`/home/staff-analysis/total`}
             />
-            <div className="financial-table-cont">
-                <table className="financial-table staff-table">
-                    <thead>
+            
+            <div className="w-full overflow-x-auto bg-white rounded-[24px] border border-[#E4E4E4] mt-4 shadow-sm">
+                <table className="w-full border-collapse">
+                    <thead className="bg-[#FAFAFA]">
                         <tr>
                             {tableHeaders.map((header, index) => (
-                                <th key={index}>{header}</th>
+                                <th key={index} className="text-right p-[15px_20px] text-[#A3A3A3] text-[13px] font-medium border-b border-[#E4E4E4] whitespace-nowrap">
+                                    {header}
+                                </th>
                             ))}
                         </tr>
                     </thead>
                     <tbody>
                         {staffData.map((staff) => (
-                            <tr key={staff.id}>
-                                {/* Profile Picture */}
-                                <td>
-                                    <div className="staff-avatar-cell">
-                                        <div
-                                            className="staff-avatar"
-                                            style={staff.avatarColor ? { backgroundColor: staff.avatarColor } : {}}
-                                        >
-
-                                            <Image
-                                                src={staff.avatarColor ? userIcon : staff.image}
-                                                alt={staff.name}
-                                                width={40}
-                                                height={40}
-                                                className={staff.avatarColor ? "staff-avatar-img" : "user-avatar-img"}
-                                            />
-
-                                        </div>
+                            <tr key={staff.id} className="border-b border-[#F5F5F5] last:border-0 hover:bg-[#fafafa] transition-all">
+                                <td className="p-[15px_20px]">
+                                    <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden border border-[#eee]"
+                                         style={staff.avatarColor ? { backgroundColor: staff.avatarColor } : {}}>
+                                        <Image
+                                            src={staff.avatarColor ? userIcon : staff.image}
+                                            alt={staff.name}
+                                            width={40}
+                                            height={40}
+                                            className={staff.avatarColor ? "w-5 h-5 invert brightness-0" : "w-full h-full object-cover"}
+                                        />
                                     </div>
                                 </td>
-
-                                {/* Name */}
-                                <td>
-                                    <div className="staff-name-badge">
+                                <td className="p-[15px_20px] text-black text-[13px] font-medium">
+                                    <div className="bg-[#F9F9F9] px-3 py-1 rounded-full border border-[#eee] inline-block">
                                         {staff.name}
                                     </div>
                                 </td>
-
-                                {/* Salary */}
-                                <td>
-                                    <div className="staff-salary-cell">
+                                <td className="p-[15px_20px]">
+                                    <div className="flex items-center gap-1.5 text-[#007C13] font-bold text-[14px]">
                                         <span>{staff.salary}</span>
                                         <Image src={greenRial} alt="rial" width={16} height={16} />
                                     </div>
                                 </td>
-
-                                {/* Phone */}
-                                <td>
-                                    <span className="staff-info-text">{staff.phone}</span>
-                                </td>
-
-                                {/* Email */}
-                                <td>
-                                    <span className="staff-info-text">{staff.email}</span>
-                                </td>
-
-                                {/* Actions */}
-                                <td>
-                                    <div className="staff-actions-cell">
-                                        <button className="staff-action-btn view-btn">
+                                <td className="p-[15px_20px] text-black text-[13px]">{staff.phone}</td>
+                                <td className="p-[15px_20px] text-[#616161] text-[13px]">{staff.email}</td>
+                                <td className="p-[15px_20px]">
+                                    <div className="flex items-center gap-2">
+                                        <button className="w-8 h-8 rounded-full flex items-center justify-center text-[#4D4D4D] hover:bg-brand-main hover:text-white transition-all text-[12px] border border-[#eee] hover:border-brand-main">
                                             👁️
                                         </button>
-                                        <button className="staff-action-btn call-btn">
-                                            <i className="fa-solid fa-ban"></i>
+                                        <button className="w-8 h-8 rounded-full flex items-center justify-center text-[#EF4444] hover:bg-[#EF4444] hover:text-white transition-all border border-[#FFE6E6]">
+                                            <i className="fa-solid fa-ban text-[12px]"></i>
                                         </button>
-                                        <button className="staff-action-btn whatsapp-btn">
-                                            <i className="fa-regular fa-pen-to-square"></i>
+                                        <button className="w-8 h-8 rounded-full flex items-center justify-center text-brand-main hover:bg-brand-main hover:text-white transition-all border border-brand-main/20">
+                                            <i className="fa-regular fa-pen-to-square text-[12px]"></i>
                                         </button>
-                                        <button className="staff-action-btn delete-btn">
-                                            <i className="fa-regular fa-trash-can"></i>
+                                        <button className="w-8 h-8 rounded-full flex items-center justify-center text-[#EF4444] hover:bg-[#EF4444] hover:text-white transition-all border border-[#FFE6E6]">
+                                            <i className="fa-regular fa-trash-can text-[12px]"></i>
                                         </button>
                                     </div>
                                 </td>
@@ -204,14 +186,18 @@ export default function TotalStaff() {
                 </table>
             </div>
 
-            <div className="pagination">
-                <button className="pagination-btn"><i className="fa-solid fa-chevron-right"></i></button>
-                <button className="pagination-btn active">1</button>
-                <button className="pagination-btn">2</button>
-                <button className="pagination-btn">...</button>
-                <button className="pagination-btn">40</button>
-                <button className="pagination-btn"><i className="fa-solid fa-chevron-left"></i></button>
+            <div className="flex items-center justify-center gap-2.5 mt-4">
+                <button className="w-9 h-9 rounded-full border border-[#E4E4E4] flex items-center justify-center text-[#A3A3A3] hover:bg-brand-main hover:text-white transition-all">
+                    <i className="fa-solid fa-chevron-right text-[12px]"></i>
+                </button>
+                <button className="w-9 h-9 rounded-full bg-brand-main text-white flex items-center justify-center text-[13px] font-medium shadow-lg shadow-brand-main/20">1</button>
+                <button className="w-9 h-9 rounded-full border border-[#E4E4E4] flex items-center justify-center text-[#A3A3A3] hover:bg-[#f5f5f5] transition-all text-[13px]">2</button>
+                <span className="text-[#A3A3A3]">...</span>
+                <button className="w-9 h-9 rounded-full border border-[#E4E4E4] flex items-center justify-center text-[#A3A3A3] hover:bg-[#f5f5f5] transition-all text-[13px]">40</button>
+                <button className="w-9 h-9 rounded-full border border-[#E4E4E4] flex items-center justify-center text-[#A3A3A3] hover:bg-brand-main hover:text-white transition-all">
+                    <i className="fa-solid fa-chevron-left text-[12px]"></i>
+                </button>
             </div>
         </div>
-    )
+    );
 }

@@ -17,8 +17,8 @@ export default function Page() {
   }, [router]);
 
   return (
-    <div className="home">
-      <video autoPlay muted loop className="home-vid">
+    <div className="relative w-full h-screen overflow-hidden">
+      <video autoPlay muted loop className="w-full h-screen object-cover">
         <source src="/images/aakdi.mp4" type="video/mp4" />
       </video>
     </div>
